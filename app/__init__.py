@@ -18,3 +18,5 @@ app = Flask(__name__, static_folder=r"C:\PythonCourse\week14\Day2\app\static")
 app.config.from_object(__name__)
 
 db = Database(app)
+
+from app import views
