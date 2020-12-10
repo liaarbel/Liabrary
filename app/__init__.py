@@ -16,7 +16,7 @@ DATABASE = {
     'port': url.port,
 }
 
-app = Flask(__name__, static_folder=str(Path("static/").absolute()))
+app = Flask(__name__, static_folder=str((Path(__file__).parent/'static').absolute()))
 app.config.from_object(__name__)
 
 db = Database(app)
