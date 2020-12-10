@@ -32,3 +32,5 @@ class BorrowBooks(db.Model):
     user = peewee.ForeignKeyField(User, unique=True)
     book = peewee.ForeignKeyField(Book, unique=True)
 
+
+db.create_tables([User, Author, Book, BorrowBooks])
