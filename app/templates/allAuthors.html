@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>authors</title>
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">REGISTER</a>
+            </li>
+            <li>
+                <a href="/booksForm">NEW BOOKS</a>
+            </li>
+            <li>
+                <a href="/authorsForm">NEW AUTHORS</a>
+            </li>
+            <li>
+                <a href="/borrow">BORROW BOOKS</a>
+            </li>
+            <li>
+                <a href="#footerlink">TABLES</a>
+            </li>
+        </ul>
+    </nav>
+	<div class="contact-us">
+		<table>
+			<thead>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Birthday</th>
+				<th>Deathday</th>
+				<th></th>
+			</thead>
+			<tbody>
+				{% for author in authors %}
+					<tr>
+						<td>{{author.name}}</td>
+						<td>{{author.age}}</td>
+						<td>{{author.birthday}}</td>
+						<td>{{author.deathday}}</td>
+						<td><a href="/authorsForm/{{author.id}}" class="edit">Edit</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+    <nav>
+        <ul>
+            <li>
+                <a href="/allUsers">Users</a>
+            </li>
+            <li>
+                <a href="/allBooks">Books</a>
+            </li>
+            <li>
+                <a href="/allAuthors">Authors</a>
+            </li>
+            <li>
+                <a href="/allBorrows">Borrows</a>
+            </li>
+        </ul>
+    </nav>
+<a id="footerlink"></a>
+</html>

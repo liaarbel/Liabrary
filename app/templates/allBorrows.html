@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>books</title>
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">REGISTER</a>
+            </li>
+            <li>
+                <a href="/booksForm">NEW BOOKS</a>
+            </li>
+            <li>
+                <a href="/authorsForm">NEW AUTHORS</a>
+            </li>
+            <li>
+                <a href="/borrow">BORROW BOOKS</a>
+            </li>
+            <li>
+                <a href="#footerlink">TABLES</a>
+            </li>
+        </ul>
+    </nav>
+	<div class="contact-us">
+		<table>
+			<thead>
+				<th>User</th>
+				<th>Book</th>
+				<th></th>
+			</thead>
+			<tbody>
+				{% for borrow in borrows %}
+					<tr>
+						<td>{{borrow.user}}</td>
+						<td>{{borrow.book}}</td>
+						<td><a href="/borrow/{{borrow.id}}" class="edit">Edit</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+    <nav>
+        <ul>
+            <li>
+                <a href="/allUsers">Users</a>
+            </li>
+            <li>
+                <a href="/allBooks">Books</a>
+            </li>
+            <li>
+                <a href="/allAuthors">Authors</a>
+            </li>
+            <li>
+                <a href="/allBorrows">Borrows</a>
+            </li>
+        </ul>
+    </nav>
+<a id="footerlink"></a>
+</html>

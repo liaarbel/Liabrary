@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>books</title>
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">REGISTER</a>
+            </li>
+            <li>
+                <a href="/booksForm">NEW BOOKS</a>
+            </li>
+            <li>
+                <a href="/authorsForm">NEW AUTHORS</a>
+            </li>
+            <li>
+                <a href="/borrow">BORROW BOOKS</a>
+            </li>
+            <li>
+                <a href="#footerlink">TABLES</a>
+            </li>
+        </ul>
+    </nav>
+    <h2>
+        BORROW BOOKS SYSTEM
+    </h2>
+    <div class="contact-us">
+        {% if model.id is defined %}
+           <form action="/deleteBorrow/{{ model.id }}" method="POST">
+               <button type="submit">DELETE</button>
+           </form>
+        {% endif %}
+      <form action="" method="POST">
+        <label for="customerUser">USER ID <em>&#x2a;</em></label>
+        <input id="customerUser" name="user" required="" type="number" min="1"/>
+        <label for="customerBook">BOOK ID <em>&#x2a;</em></label>
+        <input id="customerBook" name="book" required="" type="number" min="1"/>
+        {% if error is defined %}
+            <h3>
+                  {{ error }}
+            </h3>
+          {% endif %}
+        <button type="submit" id="customerOrder">SUBMIT</button>
+      </form>
+    </div>
+    <nav>
+        <ul>
+            <li>
+                <a href="/allUsers">Users</a>
+            </li>
+            <li>
+                <a href="/allBooks">Books</a>
+            </li>
+            <li>
+                <a href="/allAuthors">Authors</a>
+            </li>
+            <li>
+                <a href="/allBorrows">Borrows</a>
+            </li>
+        </ul>
+    </nav>
+    <a id="footerlink"></a>
+</html>

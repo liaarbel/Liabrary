@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>authors</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<nav>
+    <ul>
+        <li>
+            <a href="/">REGISTER</a>
+        </li>
+        <li>
+            <a href="/booksForm">NEW BOOKS</a>
+        </li>
+        <li>
+            <a href="/authorsForm">NEW AUTHORS</a>
+        </li>
+        <li>
+            <a href="/borrow">BORROW BOOKS</a>
+        </li>
+        <li>
+            <a href="#footerlink">TABLES</a>
+        </li>
+    </ul>
+</nav>
+<div class="contact-us">
+    {% if model.id is defined %}
+       <form action="/deleteAuthor/{{ model.id }}" method="POST">
+           <button type="submit">DELETE</button>
+       </form>
+    {% endif %}
+  <form action="" method="POST">
+    <label for="customerName">AUTHOR NAME <em>&#x2a;</em></label>
+    <input id="customerName" name="name" required="" type="text" />
+    <label for="customerAge">AGE <em>&#x2a;</em></label>
+    <input id="customerAge" name="age" required="" type="number" min="1"/>
+    <label for="customerBday">BIRTHDAY <em>&#x2a;</em></label>
+    <input id="customerBday" name="birthday" required="" type="date"/>
+    <label for="customerDday">DEATHDATE</label>
+    <input id="customerDday" name="deathday" type="date" />
+    {% if error is defined %}
+        <h3>
+              {{ error }}
+        </h3>
+      {% endif %}
+    <button type="submit" id="customerOrder">SUBMIT</button>
+  </form>
+</div>
+<nav>
+    <ul>
+        <li>
+            <a href="/allUsers">Users</a>
+        </li>
+        <li>
+            <a href="/allBooks">Books</a>
+        </li>
+        <li>
+            <a href="/allAuthors">Authors</a>
+        </li>
+        <li>
+            <a href="/allBorrows">Borrows</a>
+        </li>
+    </ul>
+</nav>
+<a id="footerlink"></a>
+</html>

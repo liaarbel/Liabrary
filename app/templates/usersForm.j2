@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>usersForm</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<nav>
+    <ul>
+        <li>
+            <a href="/">REGISTER</a>
+        </li>
+        <li>
+            <a href="/booksForm">NEW BOOKS</a>
+        </li>
+        <li>
+            <a href="/authorsForm">NEW AUTHORS</a>
+        </li>
+        <li>
+            <a href="/borrow">BORROW BOOKS</a>
+        </li>
+        <li>
+            <a href="#footerlink">TABLES</a>
+        </li>
+    </ul>
+</nav>
+<div class="contact-us">
+  {% if model.id is defined %}
+       <form action="/deleteUser/{{ model.id }}" method="POST">
+           <button type="submit">DELETE</button>
+       </form>
+   {% endif %}
+  <form action="" method="POST">
+    <label for="customerName">NAME <em>&#x2a;</em></label>
+    <input id="customerName" name="name" required="" type="text" value="{{ model.name }}" />
+    <label for="customerEmail">AGE <em>&#x2a;</em></label>
+    <input id="customerAge" name="age" required="" type="number" min="1" max="100" value="{{ model.age }}"/>
+    <label for="customerEmail">EMAIL <em>&#x2a;</em></label>
+    <input id="customerEmail" name="email" required="" type="email" value="{{ model.email }}"/>
+    <label for="customerPhone">PHONE <em>&#x2a;</em></label>
+    <input id="customerPhone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" type="tel" value="{{ model.phone }}" />
+      {% if error is defined %}
+        <h3>
+              {{ error }}
+        </h3>
+      {% endif %}
+
+    <button type="submit" id="customerOrder">SUBMIT</button>
+  </form>
+</div>
+<nav>
+    <ul>
+        <li>
+            <a href="/allUsers">Users</a>
+        </li>
+        <li>
+            <a href="/allBooks">Books</a>
+        </li>
+        <li>
+            <a href="/allAuthors">Authors</a>
+        </li>
+        <li>
+            <a href="/allBorrows">Borrows</a>
+        </li>
+    </ul>
+</nav>
+<a id="footerlink"></a>
+</html>
