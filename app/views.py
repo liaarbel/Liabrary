@@ -21,7 +21,7 @@ def add_user():
 
         try:
             user = database.add_user(name, age, email, phone)
-            return redirect(f'/userForm/{user.id}', code=302)
+            return redirect(f'/userForm/{user.any_id}', code=302)
         except Exception as e:
             return render_template("usersForm.j2", error=str(e))
 

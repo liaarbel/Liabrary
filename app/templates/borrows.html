@@ -28,8 +28,8 @@
         BORROW BOOKS SYSTEM
     </h2>
     <div class="contact-us">
-        {% if model.id is defined %}
-           <form action="/deleteBorrow/{{ model.id }}" method="POST">
+        {% if model.any_id is defined %}
+           <form action="/deleteBorrow/{{ model.any_id }}" method="POST">
                <button type="submit">DELETE</button>
            </form>
         {% endif %}
