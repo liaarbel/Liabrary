@@ -23,7 +23,8 @@ def add_user():
             user = database.add_user(name, age, email, phone)
             return redirect(f'/userForm/{user.any_id}', code=302)
         except Exception as e:
-            return render_template("usersForm.j2", error=str(e))
+            empty_user = {'name': '', 'age': '', 'email': '', 'phone': ''}
+            return render_template("usersForm.j2", model=empty_user, error=str(e))
 
     empty_user = {'name': '', 'age': '', 'email': '', 'phone': ''}
     return render_template("usersForm.j2", model=empty_user)
