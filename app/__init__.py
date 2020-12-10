@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from flask import Flask
 from flask_peewee.db import Database
 
@@ -14,7 +16,7 @@ DATABASE = {
     'port': url.port,
 }
 
-app = Flask(__name__, static_folder=r"C:\PythonCourse\week14\Day2\app\static")
+app = Flask(__name__, static_folder=str(Path("static/").absolute()))
 app.config.from_object(__name__)
 
 db = Database(app)
