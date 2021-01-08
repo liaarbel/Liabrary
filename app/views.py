@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
-from app import app
 from app import database
 from flask import redirect
 from flask import render_template
 from flask import request
+from flask import Blueprint
 
 
-@app.route('/', methods=['GET'])
+views_app = Blueprint("views_app", __name__)
+
+
+@views_app.route('/', methods=['GET'])
 def home():
     return redirect('/userForm', code=302)
 
 
-@app.route('/userForm', methods=['GET', 'POST'])
+@views_app.route('/userForm', methods=['GET', 'POST'])
 def add_user():
     if request.method == 'POST':
         name = request.form["name"]
@@ -30,7 +33,7 @@ def add_user():
     return render_template("usersForm.j2", model=empty_user)
 
 
-@app.route('/userForm/<int:any_id>', methods=['GET', 'POST'])
+@views_app.route('/userForm/<int:any_id>', methods=['GET', 'POST'])
 def one_user(any_id):
     model = database.get_user(any_id)
 
@@ -48,19 +51,19 @@ def one_user(any_id):
     return render_template("usersForm.j2", model=model)
 
 
-@app.route('/deleteUser/<int:any_id>', methods=['POST'])
+@views_app.route('/deleteUser/<int:any_id>', methods=['POST'])
 def delete_user(any_id):
     database.delete_user(any_id)
     return redirect('/userForm', code=302)
 
 
-@app.route('/allUsers', methods=['GET'])
+@views_app.route('/allUsers', methods=['GET'])
 def all_users():
     users = database.get_all_users()
     return render_template("allUsers.j2", users=users)
 
 
-@app.route('/booksForm', methods=['GET', 'POST'])
+@views_app.route('/booksForm', methods=['GET', 'POST'])
 def add_books():
     if request.method == 'POST':
         name = request.form["name"]
@@ -77,7 +80,7 @@ def add_books():
     return render_template("booksForm.j2", model=empty_book)
 
 
-@app.route('/booksForm/<int:any_id>', methods=['GET', 'POST'])
+@views_app.route('/booksForm/<int:any_id>', methods=['GET', 'POST'])
 def one_book(any_id):
     model = database.get_book(any_id)
 
@@ -95,19 +98,19 @@ def one_book(any_id):
     return render_template("booksForm.j2", model=model)
 
 
-@app.route('/deleteBook/<int:any_id>', methods=['POST'])
+@views_app.route('/deleteBook/<int:any_id>', methods=['POST'])
 def delete_book(any_id):
     database.delete_book(any_id)
     return redirect('/booksForm', code=302)
 
 
-@app.route('/allBooks', methods=['GET'])
+@views_app.route('/allBooks', methods=['GET'])
 def all_books():
     books = database.get_all_books()
     return render_template("allBooks.j2", books=books)
 
 
-@app.route('/authorsForm', methods=['GET', 'POST'])
+@views_app.route('/authorsForm', methods=['GET', 'POST'])
 def add_author():
     if request.method == 'POST':
         name = request.form["name"]
@@ -127,7 +130,7 @@ def add_author():
     return render_template("authorsForm.j2", model=empty_author)
 
 
-@app.route('/authorsForm/<int:any_id>', methods=['GET', 'POST'])
+@views_app.route('/authorsForm/<int:any_id>', methods=['GET', 'POST'])
 def one_author(any_id):
     model = database.get_author(any_id)
 
@@ -145,19 +148,19 @@ def one_author(any_id):
     return render_template("authorsForm.j2", model=model)
 
 
-@app.route('/deleteAuthor/<int:any_id>', methods=['POST'])
+@views_app.route('/deleteAuthor/<int:any_id>', methods=['POST'])
 def delete_author(any_id):
     database.delete_author(any_id)
     return redirect('/authorsForm', code=302)
 
 
-@app.route('/allAuthors', methods=['GET'])
+@views_app.route('/allAuthors', methods=['GET'])
 def all_authors():
     authors = database.get_all_authors()
     return render_template("allAuthors.j2", authors=authors)
 
 
-@app.route('/borrow', methods=['GET', 'POST'])
+@views_app.route('/borrow', methods=['GET', 'POST'])
 def borrow():
     if request.method == 'POST':
         user_id = request.form["user"]
@@ -171,7 +174,7 @@ def borrow():
     return render_template("borrows.j2", model=empty_borrow)
 
 
-@app.route('/borrow/<int:any_id>', methods=['GET', 'POST'])
+@views_app.route('/borrow/<int:any_id>', methods=['GET', 'POST'])
 def one_borrow(any_id):
     model = database.get_borrow(any_id)
 
@@ -187,13 +190,13 @@ def one_borrow(any_id):
     return render_template("borrows.j2", model=model)
 
 
-@app.route('/deleteBorrow/<int:any_id>', methods=['POST'])
+@views_app.route('/deleteBorrow/<int:any_id>', methods=['POST'])
 def delete_borrow(any_id):
     database.delete_borrow(any_id)
     return redirect('/borrow', code=302)
 
 
-@app.route('/allBorrows', methods=['GET'])
+@views_app.route('/allBorrows', methods=['GET'])
 def all_borrows():
     borrows = database.get_all_borrows()
     return render_template("allBorrows.j2", borrows=borrows)
